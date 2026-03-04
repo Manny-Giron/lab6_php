@@ -1,58 +1,47 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<title>Lab 9: The Bookworm Store</title>
-		<link rel="stylesheet" href="css/bookworm-style.css" />
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-	</head>
 
-	<body>
-		<header>
-			<h1>THE BOOKWORM STORE</h1>
-			<nav>
-				<a href="index.php">HOME</a>
-			</nav>
-    	</header>
+<head>
+	<title>Lab 9: The Bookworm Store</title>
+	<link rel="stylesheet" href="css/bookworm-style.css" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
 
-    	<section>
-      		<div>
-		        <h2>The BookWorm Store</h2>
-		        <h4>I'm not a <span class="emphasized">bookworm</span>, I'm an <span class="emphasized">escape artist</span>.</h4>
-  			</div>
+<body>
+	<?php include 'includes/book.php'; ?>
+	<header>
+		<h1>THE BOOKWORM STORE</h1>
+		<nav>
+			<a href="index.php">HOME</a>
+		</nav>
+	</header>
 
-  			<h4 class="decorated"><span><span class="emphasized">The Hunger Games</span></span></h4>
+	<section>
+		<div>
+			<h2>The BookWorm Store</h2>
+			<h4>I'm not a <span class="emphasized">bookworm</span>, I'm an <span class="emphasized">escape artist</span>.
+			</h4>
+		</div>
 
-	  		<div id="content">
-	  			<div class="row">
+		<h4 class="decorated"><span><span class="emphasized">The Hunger Games</span></span></h4>
 
-	  				<div class="column">
-	  					<img src="IMAGE" style="width:60%">
-	  					<h5>TITLE</h5>
-	  					<h5>by AUTHOR</h5>
-	  					<!-- SHOW STAR RATINGS -->
-	  					<h5><span class="emphasized">CHECK STOCK</span>
-						<h5>$PRICE</h5>
-	  				</div>
-
-	  				<div class="column">
-	  					<img src="IMAGE" style="width:60%">
-	  					<h5>TITLE</h5>
-	  					<h5>by AUTHOR</h5>
-	  					<!-- SHOW STAR RATINGS -->
-	  					<h5><span class="emphasized">CHECK STOCK</span>
-						<h5>$PRICE</h5>
-	  				</div>
-
-	  				<div class="column">
-	  					<img src="IMAGE" style="width:60%">
-	  					<h5>TITLE</h5>
-	  					<h5>by AUTHOR</h5>
-	  					<!-- SHOW STAR RATINGS -->
-	  					<h5><span class="emphasized">CHECK STOCK</span>
-						<h5>$PRICE</h5>
-	  				</div>
-				</div>
+		<div id="content">
+			<div class="row">
+				<?php foreach ($books as $book): ?>
+					<div class="column">
+						<img src="<?= $book->Image ?>" style="width:60%">
+						<h5><?= $book->Title ?></h5>
+						<h5>by <?= $book->Author ?></h5>
+						<?= $book->showRatingStars() ?>
+						<h5><span class="emphasized"><?= $book->checkInStock() ?></span>
+							<h5>
+								<?= $book->Price ?>
+							</h5>
+					</div>
+				<?php endforeach; ?>
 			</div>
-    	</section>
-	</body>
+		</div>
+	</section>
+</body>
+
 </html>
